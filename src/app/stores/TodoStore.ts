@@ -13,7 +13,6 @@ export const useTodoStore = (defaultTodos: TodoModel[] = []) => {
       return store.todos.filter((todo) => todo.completed);
     },
     addTodo(item: Partial<TodoModel>): void {
-      console.log(item);
       store.todos.push(new TodoModel(item.text, item.completed));
     },
     editTodo(id: number, data: Partial<TodoModel>): void {

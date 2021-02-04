@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import { TodoTextInput } from 'app/components/TodoTextInput';
 import { TodoModel } from 'app/models/TodoModel';
@@ -13,82 +13,65 @@ export interface TodoProps extends TodoActions {
   todo: TodoModel;
 }
 
-export interface TodoState {
-  editing: boolean;
-}
+export function TodoItem(props: TodoProps) {
+  const [editing, setEditing] = useState(false);
 
-export class TodoItem extends React.Component<TodoProps, TodoState> {
-  constructor(props?: TodoProps, context?: any) {
-    super(props, context);
-    this.state = { editing: false };
-  }
+  const { todo, deleteTodo, editTodo } = props;
 
-  private handleDoubleClick = (e: React.SyntheticEvent<any>) => {
-    this.setState({ editing: true });
+  const updateTodo = (data: Partial<TodoModel>) => {
+    if (data.text !== undefined && data.text.trim().length === 0) {
+      deleteTodo(todo.id);
+    } else {
+      editTodo(todo.id, data);
+    }
+    setEditing(false);
   };
 
-  private handleToggleCheckbox = (e: React.SyntheticEvent<any>) => {
-    const { todo } = this.props;
+  const handleToggleCheckbox = (e: React.SyntheticEvent<any>) => {
     const target = e.target as any;
     if (
       target &&
       target.checked !== undefined &&
       target.checked !== todo.completed
     ) {
-      this.updateTodo({ completed: target.checked });
+      updateTodo({ completed: target.checked });
     }
   };
 
-  private handleClickDeleteButton = (e: React.SyntheticEvent<any>) => {
-    const { todo, deleteTodo } = this.props;
+  const handleDoubleClick = () => {
+    setEditing(true);
+  };
+
+  const handleClickDeleteButton = () => {
     deleteTodo(todo.id);
   };
 
-  private updateTodo = (data: Partial<TodoModel>) => {
-    const { todo } = this.props;
-    if (data.text !== undefined && data.text.trim().length === 0) {
-      this.props.deleteTodo(todo.id);
-    } else {
-      this.props.editTodo(todo.id, data);
-    }
-    this.setState({ editing: false });
-  };
-
-  render() {
-    const { todo } = this.props;
-
-    const element = this.state.editing ? (
-      <TodoTextInput
-        text={todo.text}
-        editing={this.state.editing}
-        onSave={(text) => this.updateTodo({ text })}
+  const element = editing ? (
+    <TodoTextInput
+      text={todo.text}
+      editing={editing}
+      onSave={(text) => updateTodo({ text })}
+    />
+  ) : (
+    <div className={style.view}>
+      <input
+        className={style.toggle}
+        type="checkbox"
+        checked={todo.completed}
+        onChange={handleToggleCheckbox}
       />
-    ) : (
-      <div className={style.view}>
-        <input
-          className={style.toggle}
-          type="checkbox"
-          checked={todo.completed}
-          onChange={this.handleToggleCheckbox}
-        />
 
-        <label onDoubleClick={this.handleDoubleClick}>{todo.text}</label>
+      <label onDoubleClick={handleDoubleClick}>{todo.text}</label>
 
-        <button
-          className={style.destroy}
-          onClick={this.handleClickDeleteButton}
-        />
-      </div>
-    );
+      <button className={style.destroy} onClick={handleClickDeleteButton} />
+    </div>
+  );
 
-    const classes = classNames({
-      [style.completed]: todo.completed,
-      [style.editing]: this.state.editing,
-      [style.normal]: !this.state.editing,
-    });
+  const classes = classNames({
+    [style.completed]: todo.completed,
+    [style.editing]: editing,
+    [style.normal]: !editing,
+  });
 
-    return <li className={classes}>{element}</li>;
-  }
+  return <li className={classes}>{element}</li>;
 }
-
-export default TodoItem;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 import style from './style.css';
 
@@ -10,65 +10,51 @@ export interface TodoTextInputProps {
   onSave: (text: string) => any;
 }
 
-export interface TodoTextInputState {
-  text: string;
-}
+export function TodoTextInput(props: TodoTextInputProps) {
+  const { onSave } = props;
 
-export class TodoTextInput extends React.Component<
-  TodoTextInputProps,
-  TodoTextInputState
-> {
-  constructor(props?: TodoTextInputProps, context?: any) {
-    super(props, context);
-    this.state = {
-      text: this.props.text || '',
-    };
-  }
+  const [text, setText] = useState(props.text || '');
 
-  private handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     const text = e.target.value.trim();
 
     if (e.which === 13) {
-      this.props.onSave(text);
-      if (this.props.newTodo) {
-        this.setState({ text: '' });
+      onSave(text);
+      if (props.newTodo) {
+        setText('');
       }
     }
   };
 
-  private handleChange = (e) => {
-    this.setState({ text: e.target.value });
+  const handleChange = (e) => {
+    setText(e.target.value);
   };
 
-  private handleBlur = (e) => {
+  const handleBlur = (e) => {
     const text = e.target.value.trim();
-    if (!this.props.newTodo) {
-      this.props.onSave(text);
+    if (!props.newTodo) {
+      onSave(text);
     }
   };
 
-  render() {
-    const classes = classNames(
-      {
-        [style.edit]: this.props.editing,
-        [style.new]: this.props.newTodo,
-      },
-      style.normal,
-    );
+  const classes = classNames(
+    {
+      [style.edit]: props.editing,
+      [style.new]: props.newTodo,
+    },
+    style.normal,
+  );
 
-    return (
-      <input
-        className={classes}
-        type="text"
-        autoFocus
-        placeholder={this.props.placeholder}
-        value={this.state.text}
-        onBlur={this.handleBlur}
-        onChange={this.handleChange}
-        onKeyDown={this.handleSubmit}
-      />
-    );
-  }
+  return (
+    <input
+      className={classes}
+      type="text"
+      autoFocus
+      placeholder={props.placeholder}
+      value={text}
+      onBlur={handleBlur}
+      onChange={handleChange}
+      onKeyDown={handleSubmit}
+    />
+  );
 }
-
-export default TodoTextInput;
