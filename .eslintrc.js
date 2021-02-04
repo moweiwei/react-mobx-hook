@@ -43,6 +43,7 @@ module.exports = {
       },
     ],
     'no-nested-ternary': 'warn',
+    '@typescript-eslint/no-var-requires': 'off',
     'no-console': 'error',
     'no-param-reassign': 'off',
     eqeqeq: 'error',
@@ -91,6 +92,7 @@ module.exports = {
     camelcase: 'warn',
     'array-bracket-spacing': 'off',
     'space-before-function-paren': 'off',
+    'no-nested-ternary': 'off',
   },
   settings: {
     react: {
