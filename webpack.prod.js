@@ -1,6 +1,6 @@
 const webpack = require('webpack')
 const { merge } = require('webpack-merge')
-const OptimizeCss = require('optimize-css-assets-webpack-plugin')
+// const OptimizeCss = require('optimize-css-assets-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const common = require('./webpack.common.js')
 
