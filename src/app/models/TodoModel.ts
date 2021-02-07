@@ -1,20 +1,20 @@
-import { observable } from 'mobx';
+import { observable } from 'mobx'
 
 export class TodoModel {
-  readonly id: number;
-  @observable public text: string;
-  @observable public completed: boolean;
+  readonly id: number
+  @observable public text: string
+  @observable public completed: boolean
 
   constructor(text: string, completed = false) {
-    this.id = TodoModel.generateId();
-    this.text = text;
-    this.completed = completed;
+    this.id = TodoModel.generateId()
+    this.text = text
+    this.completed = completed
   }
 
-  static nextId = 1;
+  static nextId = 1
   static generateId() {
-    return this.nextId++;
+    return this.nextId++
   }
 }
 
-export default TodoModel;
+export default TodoModel

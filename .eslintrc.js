@@ -93,10 +93,11 @@ module.exports = {
     'array-bracket-spacing': 'off',
     'space-before-function-paren': 'off',
     'no-nested-ternary': 'off',
+    'prettier/prettier': 'off',
   },
   settings: {
     react: {
       version: 'detect', // Tells eslint-plugin-react to automatically detect the version of React to use
     },
   },
-};
+}

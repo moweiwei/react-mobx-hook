@@ -1,41 +1,41 @@
-import React, { useState } from 'react';
-import classNames from 'classnames';
-import style from './style.css';
+import React, { useState } from 'react'
+import classNames from 'classnames'
+import style from './style.css'
 
 export interface TodoTextInputProps {
-  text?: string;
-  placeholder?: string;
-  newTodo?: boolean;
-  editing?: boolean;
-  onSave: (text: string) => any;
+  text?: string
+  placeholder?: string
+  newTodo?: boolean
+  editing?: boolean
+  onSave: (text: string) => any
 }
 
 export function TodoTextInput(props: TodoTextInputProps) {
-  const { onSave } = props;
+  const { onSave } = props
 
-  const [text, setText] = useState(props.text || '');
+  const [text, setText] = useState(props.text || '')
 
   const handleSubmit = (e) => {
-    const text = e.target.value.trim();
+    const text = e.target.value.trim()
 
     if (e.which === 13) {
-      onSave(text);
+      onSave(text)
       if (props.newTodo) {
-        setText('');
+        setText('')
       }
     }
-  };
+  }
 
   const handleChange = (e) => {
-    setText(e.target.value);
-  };
+    setText(e.target.value)
+  }
 
   const handleBlur = (e) => {
-    const text = e.target.value.trim();
+    const text = e.target.value.trim()
     if (!props.newTodo) {
-      onSave(text);
+      onSave(text)
     }
-  };
+  }
 
   const classes = classNames(
     {
@@ -43,7 +43,7 @@ export function TodoTextInput(props: TodoTextInputProps) {
       [style.new]: props.newTodo,
     },
     style.normal,
-  );
+  )
 
   return (
     <input
@@ -56,5 +56,5 @@ export function TodoTextInput(props: TodoTextInputProps) {
       onChange={handleChange}
       onKeyDown={handleSubmit}
     />
-  );
+  )
 }

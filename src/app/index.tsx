@@ -1,7 +1,7 @@
-import React from 'react';
-import { hot } from 'react-hot-loader/root';
-import { Router, Route, Switch } from 'react-router';
-import { TodoContainer } from 'app/containers/TodoContainer';
+import React from 'react'
+import { hot } from 'react-hot-loader/root'
+import { Router, Route, Switch } from 'react-router'
+import { TodoContainer } from 'app/containers/TodoContainer'
 
 // render react DOM
 export const App = hot(({ history }) => {
@@ -11,5 +11,5 @@ export const App = hot(({ history }) => {
         <Route path="/" component={TodoContainer} />
       </Switch>
     </Router>
-  );
-});
+  )
+})

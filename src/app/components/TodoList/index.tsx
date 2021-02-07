@@ -1,22 +1,22 @@
-import React from 'react';
-import { TodoItem, TodoActions } from 'app/components/TodoItem';
-import { TodoModel } from 'app/models/TodoModel';
-import style from './style.css';
+import React from 'react'
+import { TodoItem, TodoActions } from 'app/components/TodoItem'
+import { TodoModel } from 'app/models/TodoModel'
+import style from './style.css'
 
 export interface TodoListProps extends TodoActions {
-  todos: TodoModel[];
-  completeAll: () => any;
+  todos: TodoModel[]
+  completeAll: () => any
 }
 
 export function TodoList(props: TodoListProps) {
-  const { todos, ...actions } = props;
+  const { todos, ...actions } = props
 
   const handleToggleAll = (e: React.SyntheticEvent<any>) => {
-    e.preventDefault();
-    props.completeAll();
-  };
+    e.preventDefault()
+    props.completeAll()
+  }
 
-  const completedCount = todos.length;
+  const completedCount = todos.length
   const renderToggleAll =
     todos.length > 0 ? (
       <input
@@ -25,7 +25,7 @@ export function TodoList(props: TodoListProps) {
         checked={completedCount === todos.length}
         onChange={handleToggleAll}
       />
-    ) : null;
+    ) : null
 
   return (
     <section className={style.main}>
@@ -36,5 +36,5 @@ export function TodoList(props: TodoListProps) {
         ))}
       </ul>
     </section>
-  );
+  )
 }
