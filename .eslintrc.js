@@ -1,6 +1,8 @@
 module.exports = {
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
   extends: [
+    // 'airbnb',
+    // 'airbnb/hooks',
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from @typescript-eslint/eslint-plugin
     'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
@@ -19,7 +21,6 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
-    // 'comma-dangle': ['error'],
     'object-curly-spacing': ['error', 'always'],
     'no-void': 'warn',
     'new-cap': [
@@ -71,16 +72,15 @@ module.exports = {
     'react/jsx-wrap-multilines': 0,
     'react/prop-types': 0,
     'react/jsx-one-expression-per-line': 0,
-    // 'import/no-unresolved': [
-    //   2,
+    // 'import/extensions': [
+    //   'error',
+    //   'ignorePackages',
     //   {
-    //     ignore: ['^assets', '^app'],
-    //   },
-    // ],
-    // 'import/no-extraneous-dependencies': [
-    //   2,
-    //   {
-    //     optionalDependencies: false,
+    //     ts: 'never',
+    //     tsx: 'never',
+    //     json: 'never',
+    //     js: 'never',
+    //     jsx: 'never',
     //   },
     // ],
     'jsx-a11y/no-noninteractive-element-interactions': 0,
@@ -92,8 +92,11 @@ module.exports = {
     camelcase: 'warn',
     'array-bracket-spacing': 'off',
     'space-before-function-paren': 'off',
-    'no-nested-ternary': 'off',
     'prettier/prettier': 'off',
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': ['error'],
+    // 'no-shadow': 'off',
+    // '@typescript-eslint/no-shadow': ['error', { ignoreTypeValueShadow: true }],
   },
   settings: {
     react: {

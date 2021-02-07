@@ -11,9 +11,9 @@ export interface TodoTextInputProps {
 }
 
 export function TodoTextInput(props: TodoTextInputProps) {
-  const { onSave } = props
+  const { onSave, text, editing, newTodo, placeholder } = props
 
-  const [text, setText] = useState(props.text || '')
+  const [text, setText] = useState(text || '')
 
   const handleSubmit = (e) => {
     const text = e.target.value.trim()
@@ -39,8 +39,8 @@ export function TodoTextInput(props: TodoTextInputProps) {
 
   const classes = classNames(
     {
-      [style.edit]: props.editing,
-      [style.new]: props.newTodo,
+      [style.edit]: editing,
+      [style.new]: newTodo,
     },
     style.normal,
   )
@@ -50,7 +50,7 @@ export function TodoTextInput(props: TodoTextInputProps) {
       className={classes}
       type="text"
       autoFocus
-      placeholder={props.placeholder}
+      placeholder={placeholder}
       value={text}
       onBlur={handleBlur}
       onChange={handleChange}

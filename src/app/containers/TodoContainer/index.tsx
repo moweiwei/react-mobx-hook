@@ -1,5 +1,4 @@
 import React, { useEffect, useCallback, useState } from 'react'
-import style from './style.css'
 import { observer } from 'mobx-react'
 import { useLocation, useHistory } from 'react-router'
 import Header from 'app/components/Header'
@@ -9,6 +8,7 @@ import { TodoModel } from 'app/models'
 import { useTodoStore } from 'app/stores/TodoStore'
 import { TODO_FILTER_LOCATION_HASH, TodoFilter } from 'app/constants'
 import { Button } from 'antd'
+import style from './style.css'
 
 export const TodoContainer = observer(() => {
   const todoStore = useTodoStore([

@@ -1,8 +1,8 @@
-const path = require('path');
+const path = require('path')
 
 // plugins
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -27,7 +27,7 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      //css
+      // css
       {
         test: /\.css$/i,
         use: [
@@ -75,4 +75,4 @@ module.exports = {
       template: 'src/assets/index.html',
     }),
   ],
-};
+}
