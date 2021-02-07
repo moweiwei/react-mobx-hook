@@ -7,7 +7,6 @@ import { TodoList } from 'app/components/TodoList'
 import { TodoModel } from 'app/models'
 import { useTodoStore } from 'app/stores/TodoStore'
 import { TODO_FILTER_LOCATION_HASH, TodoFilter } from 'app/constants'
-import { Button } from 'antd'
 import style from './style.css'
 
 export const TodoContainer = observer(() => {
@@ -38,6 +37,7 @@ export const TodoContainer = observer(() => {
   )
 
   const itemsToDisplay =
+    // eslint-disable-next-line no-nested-ternary
     filter === TodoFilter.ALL
       ? todoStore.todos
       : filter === TodoFilter.ACTIVE
