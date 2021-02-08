@@ -7,5 +7,8 @@ import { App } from 'app'
 // prepare history
 const history = createBrowserHistory()
 
+if (module && module.hot) {
+  module.hot.accept()
+}
 // render react DOM
 ReactDOM.render(<App history={history} />, document.getElementById('root'))
