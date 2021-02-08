@@ -3,6 +3,9 @@ const { PROJECT_PATH, isDev } = require('./constants')
 
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
+const WebpackBar = require('webpackbar')
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -15,7 +18,9 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      app: resolve(PROJECT_PATH, './src/app/'),
+      src: resolve(PROJECT_PATH, './src'),
+      app: resolve(PROJECT_PATH, './src/app'),
+      components: resolve(PROJECT_PATH, './src/app/components'),
       'react-dom': '@hot-loader/react-dom',
     },
   },
@@ -103,5 +108,47 @@ module.exports = {
             useShortDoctype: true,
           },
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          context: resolve(PROJECT_PATH, './src/assets'),
+          from: '*',
+          to: resolve(PROJECT_PATH, './dist'),
+          toType: 'dir',
+        },
+      ],
+    }),
+    new WebpackBar({
+      color: '#fa8c16',
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        configFile: resolve(PROJECT_PATH, './tsconfig.json'),
+      },
+    }),
   ],
+  optimization: {
+    splitChunks: {
+      chunks: 'async',
+      minSize: 20000,
+      minRemainingSize: 0,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          reuseExistingChunk: true,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
 }
