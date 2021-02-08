@@ -11,9 +11,9 @@ export interface TodoTextInputProps {
 }
 
 export function TodoTextInput(props: TodoTextInputProps) {
-  const { onSave, text, editing, newTodo, placeholder } = props
+  const { onSave, editing, newTodo, placeholder } = props
 
-  const [text, setText] = useState(text || '')
+  const [text, setText] = useState(props.text || '')
 
   const handleSubmit = (e) => {
     const text = e.target.value.trim()

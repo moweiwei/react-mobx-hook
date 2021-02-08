@@ -1,27 +1,37 @@
 {
   "compilerOptions": {
+    // 基本配置
     "sourceMap": true,
     "target": "es5",
     "jsx": "react",
     "allowJs": true,
     "module": "es6",
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "declaration": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,
     "noUnusedLocals": false,
     "removeComments": true,
     "strictNullChecks": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop" : true,
-    "outDir": "build",
     "lib": ["es6", "es7", "dom"],
+
+    // 模块解析选项
+    "moduleResolution": "node",
+    "resolveJsonModule": true, // 支持导入 json 模块
+    "esModuleInterop": true,
     "baseUrl": "src",
     "paths": {
       "app/*": ["./app/*"]
-    }
+    },
+    "outDir": "/",
+
+    // 实验性选项
+    "experimentalDecorators": true, // 启用实验性的ES装饰器
+    "emitDecoratorMetadata": true, // 给源码里的装饰器声明加上设计类型元数据
+
+    //其他选项
+    "forceConsistentCasingInFileNames": true, // 禁止对同一个文件的不一致的引用
+    "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查
+    "allowSyntheticDefaultImports": true // 允许从没有设置默认导出的模块中默认导入
   },
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", "node_modules"]
 }

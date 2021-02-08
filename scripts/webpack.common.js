@@ -1,21 +1,21 @@
-const path = require('path')
+const { resolve } = require('path')
+const { PROJECT_PATH, isDev } = require('./constants')
 
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   entry: {
-    app: './src/index.tsx',
+    app: resolve(PROJECT_PATH, './src/index.tsx'),
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: `[name]${isDev ? '' : '.[hash:8]'}.js`,
+    path: resolve(PROJECT_PATH, './dist'),
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      app: path.resolve(__dirname, 'src/app/'),
+      app: resolve(PROJECT_PATH, './src/app/'),
       'react-dom': '@hot-loader/react-dom',
     },
   },
@@ -62,7 +62,19 @@ module.exports = {
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
-      { test: /\.(a?png|svg)$/, use: 'url-loader?limit=10000' },
+      {
+        test: /\.(a?png|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10 * 1024,
+              name: '[name].[contenthash:8].[ext]',
+              outputPath: 'assets/images',
+            },
+          },
+        ],
+      },
       {
         test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/,
         use: 'file-loader',
@@ -70,9 +82,26 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/assets/index.html',
+      template: resolve(PROJECT_PATH, './src/assets/index.html'),
+      filename: 'index.html',
+      cache: false, // 特别重要：防止之后使用v6版本 copy-webpack-plugin 时代码修改一刷新页面为空问题。
+      minify: isDev
+        ? false
+        : {
+            removeAttributeQuotes: true,
+            collapseWhitespace: true,
+            removeComments: true,
+            collapseBooleanAttributes: true,
+            collapseInlineTagWhitespace: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            minifyCSS: true,
+            minifyJS: true,
+            minifyURLs: true,
+            useShortDoctype: true,
+          },
     }),
   ],
 }
