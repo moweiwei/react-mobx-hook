@@ -1,6 +1,7 @@
 import React from 'react'
 import { TodoTextInput } from 'app/components/TodoTextInput'
 import { TodoModel } from 'app/models/TodoModel'
+import { get } from 'lodash'
 
 export interface HeaderProps {
   addTodo: (todo: Partial<TodoModel>) => any
@@ -12,6 +13,8 @@ export default function Header({ addTodo }: HeaderProps) {
       addTodo({ text })
     }
   }
+  // eslint-disable-next-line no-console
+  console.log('1', get(addTodo, ''))
   return (
     <header>
       <h1>Todos</h1>
