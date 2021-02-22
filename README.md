@@ -91,6 +91,11 @@ lint-staged 只对我们 git 缓存区最新改动过的文件进行以上的格
 $ yarn changelog
 ```
 
+## 推荐两个 hooks 库
+
+- [react-use](https://github.com/streamich/react-use)
+- [ahooks](https://github.com/alibaba/hooks)
+
 # License
 
 MIT
