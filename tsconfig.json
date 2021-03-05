@@ -20,7 +20,7 @@
     "esModuleInterop": true,
     "baseUrl": "src",
     "paths": {
-      "app/*": ["./app/*"]
+      "pages/*": ["./pages/*"]
     },
     "outDir": "/",
 
@@ -33,5 +33,5 @@
     "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查
     "allowSyntheticDefaultImports": true // 允许从没有设置默认导出的模块中默认导入
   },
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "scripts"]
 }
