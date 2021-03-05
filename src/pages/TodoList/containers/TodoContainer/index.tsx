@@ -1,12 +1,12 @@
 import React, { useEffect, useCallback, useState } from 'react'
 import { observer } from 'mobx-react'
 import { useLocation, useHistory } from 'react-router'
-import Header from 'app/components/Header'
-import Footer from 'app/components/Footer'
-import { TodoList } from 'app/components/TodoList'
-import { TodoModel } from 'app/models'
-import { useTodoStore } from 'app/stores/TodoStore'
-import { TODO_FILTER_LOCATION_HASH, TodoFilter } from 'app/constants'
+import Header from 'pages/TodoList/components/Header'
+import Footer from 'pages/TodoList/components/Footer'
+import { TodoList } from 'pages/TodoList/components/TodoList'
+import { TodoModel } from 'pages/TodoList/models'
+import { useTodoStore } from 'stores/TodoStore'
+import { TODO_FILTER_LOCATION_HASH, TodoFilter } from 'pages/TodoList/constants'
 import style from './style.css'
 
 export const TodoContainer = observer(() => {

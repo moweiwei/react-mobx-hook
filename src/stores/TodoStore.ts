@@ -1,4 +1,4 @@
-import { TodoModel } from 'app/models'
+import { TodoModel } from 'pages/TodoList/models'
 import { useLocalStore } from 'mobx-react'
 
 export type TodoStore = ReturnType<typeof useTodoStore>

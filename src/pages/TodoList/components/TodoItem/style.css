@@ -93,7 +93,7 @@
 */
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-
+  /* stylelint-disable-next-line */
   .normal .toggle {
     background: none;
     height: 40px;

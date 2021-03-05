@@ -136,7 +136,6 @@
 */
 
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
-
   .toggleAll,
   .normal li .toggle {
     background: none;

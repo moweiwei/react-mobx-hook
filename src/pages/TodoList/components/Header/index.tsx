@@ -1,6 +1,6 @@
 import React from 'react'
-import { TodoTextInput } from 'app/components/TodoTextInput'
-import { TodoModel } from 'app/models/TodoModel'
+import { TodoTextInput } from 'pages/TodoList/components/TodoTextInput'
+import { TodoModel } from 'pages/TodoList/models/TodoModel'
 import { get } from 'lodash'
 
 export interface HeaderProps {

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { createBrowserHistory } from 'history'
-import { App } from 'app'
+import { App } from 'pages/TodoList'
 // import './App.css';
 
 // prepare history

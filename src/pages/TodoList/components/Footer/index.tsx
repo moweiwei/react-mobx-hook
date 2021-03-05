@@ -5,7 +5,7 @@ import {
   TodoFilter,
   TODO_FILTER_TITLES,
   TODO_FILTER_TYPES,
-} from 'app/constants'
+} from 'pages/TodoList/constants'
 
 export interface FooterProps {
   filter: TodoFilter

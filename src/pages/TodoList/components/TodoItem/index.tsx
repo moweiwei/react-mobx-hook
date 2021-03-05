@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import classNames from 'classnames'
-import { TodoTextInput } from 'app/components/TodoTextInput'
-import { TodoModel } from 'app/models/TodoModel'
+import { TodoTextInput } from 'pages/TodoList/components/TodoTextInput'
+import { TodoModel } from 'pages/TodoList/models/TodoModel'
 import style from './style.css'
 
 export interface TodoActions {

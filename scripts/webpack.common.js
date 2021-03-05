@@ -19,9 +19,12 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       src: resolve(PROJECT_PATH, './src'),
-      app: resolve(PROJECT_PATH, './src/app'),
-      components: resolve(PROJECT_PATH, './src/app/components'),
+      pages: resolve(PROJECT_PATH, './src/pages'),
+      components: resolve(PROJECT_PATH, './src/components'),
       'react-dom': '@hot-loader/react-dom',
+      stores: resolve(PROJECT_PATH, './src/stores'),
+      less: resolve(PROJECT_PATH, './src/less'),
+      utils: resolve(PROJECT_PATH, './src/utils'),
     },
   },
   module: {
