@@ -1,5 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react'
-import { observer } from 'mobx-react'
+import { useObserver } from 'mobx-react'
 import { useLocation, useHistory } from 'react-router'
 import Header from 'pages/TodoList/components/Header'
 import Footer from 'pages/TodoList/components/Footer'
@@ -9,7 +9,7 @@ import { useTodoStore } from 'stores/TodoStore'
 import { TODO_FILTER_LOCATION_HASH, TodoFilter } from 'pages/TodoList/constants'
 import style from './style.css'
 
-export const TodoContainer = observer(() => {
+export const TodoContainer = () => {
   const todoStore = useTodoStore([
     new TodoModel('Use MobX'),
     new TodoModel('Use React'),
@@ -44,23 +44,25 @@ export const TodoContainer = observer(() => {
       ? todoStore.activeTodos
       : todoStore.completedTodos
 
-  return (
-    <div className={style.normal}>
-      <Header addTodo={todoStore.addTodo} />
-      <TodoList
-        todos={itemsToDisplay}
-        completeAll={todoStore.completeAll}
-        deleteTodo={todoStore.deleteTodo}
-        editTodo={todoStore.editTodo}
-      />
-      <Footer
-        filter={filter}
-        activeCount={todoStore.activeTodos.length}
-        completedCount={todoStore.completedTodos.length}
-        onClearCompleted={todoStore.clearCompleted}
-        onChangeFilter={handleFilterChange}
-      />
-      {/* <Button type="primary">Button</Button> */}
-    </div>
-  )
-})
+  return useObserver(() => {
+    return (
+      <div className={style.normal}>
+        <Header addTodo={todoStore.addTodo} />
+        <TodoList
+          todos={itemsToDisplay}
+          completeAll={todoStore.completeAll}
+          deleteTodo={todoStore.deleteTodo}
+          editTodo={todoStore.editTodo}
+        />
+        <Footer
+          filter={filter}
+          activeCount={todoStore.activeTodos.length}
+          completedCount={todoStore.completedTodos.length}
+          onClearCompleted={todoStore.clearCompleted}
+          onChangeFilter={handleFilterChange}
+        />
+        {/* <Button type="primary">Button</Button> */}
+      </div>
+    )
+  })
+}
