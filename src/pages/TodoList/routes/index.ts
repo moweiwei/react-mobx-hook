@@ -1,4 +1,4 @@
-import { TodoContainer } from 'pages/TodoList/containers/TodoContainer'
+import { TodoContainer } from 'pages/TodoList/containers'
 
 export default [
   {
