@@ -1,5 +1,5 @@
 const { resolve } = require('path')
-const { PROJECT_PATH, isDev } = require('./constants')
+const { isDev } = require('./constants')
 
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -7,24 +7,22 @@ const CopyPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
+const root = (path) => resolve(__dirname, `../${path}`)
+
 module.exports = {
   entry: {
-    app: resolve(PROJECT_PATH, './src/index.tsx'),
-  },
-  output: {
-    filename: `[name]${isDev ? '' : '.[hash:8]'}.js`,
-    path: resolve(PROJECT_PATH, './dist'),
+    app: './src/index.tsx',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      src: resolve(PROJECT_PATH, './src'),
-      pages: resolve(PROJECT_PATH, './src/pages'),
-      components: resolve(PROJECT_PATH, './src/components'),
+      src: root('src'),
+      pages: root('src/pages'),
+      components: root('src/components'),
       'react-dom': '@hot-loader/react-dom',
-      stores: resolve(PROJECT_PATH, './src/stores'),
-      less: resolve(PROJECT_PATH, './src/less'),
-      utils: resolve(PROJECT_PATH, './src/utils'),
+      stores: root('src/stores'),
+      less: root('src/less'),
+      utils: root('src/utils'),
     },
   },
   module: {
@@ -91,7 +89,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: resolve(PROJECT_PATH, './src/assets/index.html'),
+      template: root('src/assets/index.html'),
       filename: 'index.html',
       cache: false, // 特别重要：防止之后使用v6版本 copy-webpack-plugin 时代码修改一刷新页面为空问题。
       minify: isDev
@@ -114,9 +112,9 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         {
-          context: resolve(PROJECT_PATH, './src/assets'),
+          context: root('src/assets'),
           from: '*',
-          to: resolve(PROJECT_PATH, './dist'),
+          to: root('dist'),
           toType: 'dir',
         },
       ],
@@ -126,7 +124,7 @@ module.exports = {
     }),
     new ForkTsCheckerWebpackPlugin({
       typescript: {
-        configFile: resolve(PROJECT_PATH, './tsconfig.json'),
+        configFile: root('tsconfig.json'),
       },
     }),
   ],

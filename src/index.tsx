@@ -1,14 +1,26 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import { createBrowserHistory } from 'history'
-import { App } from 'pages/TodoList'
-// import './App.css';
+import React, { Suspense } from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { Spin } from 'antd'
 
-// prepare history
-const history = createBrowserHistory()
+const render = async (component) => {
+  // const { locales } = await i18n.init()
+  ReactDOM.render(
+    <Suspense fallback={<Spin />}>
+      {/* <LocaleProvider locales={locales} localeKey="lang" ignoreWarnings> */}
+      {component}
+      {/* </LocaleProvider> */}
+    </Suspense>,
+    document.getElementById('root'),
+  )
+}
+
+render(<App />)
 
 if (module && module.hot) {
-  module.hot.accept()
+  module.hot.accept('./App', () => {
+    const NextApp = require('./App').default
+
+    render(<NextApp />)
+  })
 }
-// render react DOM
-ReactDOM.render(<App history={history} />, document.getElementById('root'))
