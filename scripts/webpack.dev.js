@@ -7,6 +7,9 @@ const proxys = require('./proxys.js')
 const root = (path) => resolve(__dirname, `../${path}`)
 
 module.exports = merge(common, {
+  entry: {
+    app: ['webpack-hot-middleware/client', './src/index.tsx'],
+  },
   devtool: 'eval-source-map',
   mode: 'development',
   output: {

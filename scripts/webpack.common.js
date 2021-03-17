@@ -1,5 +1,4 @@
 const { resolve } = require('path')
-const { isDev } = require('./constants')
 
 // plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
@@ -8,6 +7,7 @@ const WebpackBar = require('webpackbar')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 const root = (path) => resolve(__dirname, `../${path}`)
+const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
