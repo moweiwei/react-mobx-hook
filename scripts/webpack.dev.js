@@ -1,22 +1,67 @@
 const webpack = require('webpack')
 const { resolve } = require('path')
 const { merge } = require('webpack-merge')
-const common = require('./webpack.common.js')
+const baseConfig = require('./webpack.base.js')
 const proxys = require('./proxys.js')
 
 const root = (path) => resolve(__dirname, `../${path}`)
 
-module.exports = merge(common, {
-  entry: {
-    app: ['webpack-hot-middleware/client', './src/index.tsx'],
-  },
-  devtool: 'eval-source-map',
+module.exports = merge(baseConfig, {
   mode: 'development',
+  entry: {
+    app: ['./src/index.tsx'],
+  },
+  devtool: 'eval-cheap-module-source-map',
   output: {
     filename: '[name].js',
     path: root('dist/'),
     publicPath: '/',
     pathinfo: false,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.less$/i,
+        include: root('src'),
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              esModule: true,
+              modules: {
+                // minimize: false,
+                importLoaders: 1,
+                localIdentName: '[path][name]__[local]',
+              },
+            },
+          },
+          {
+            loader: 'less-loader',
+          },
+        ],
+      },
+      {
+        test: /\.less$/i,
+        include: root('node_modules'),
+        use: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                // minimize: false,
+                importLoaders: 2,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   devServer: {
     contentBase: root('public'),

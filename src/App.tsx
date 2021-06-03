@@ -32,8 +32,6 @@ class App extends Component {
     )
   }
 
-  // componentDidMount() {}
-
   render() {
     return (
       <Provider rootStore={this.rootStore}>

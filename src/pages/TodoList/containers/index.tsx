@@ -61,7 +61,6 @@ export const TodoContainer = () => {
           onClearCompleted={todoStore.clearCompleted}
           onChangeFilter={handleFilterChange}
         />
-        {/* <Button type="primary">Button</Button> */}
       </div>
     )
   })

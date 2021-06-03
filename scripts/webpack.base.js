@@ -1,6 +1,5 @@
 const { resolve } = require('path')
 
-// plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const WebpackBar = require('webpackbar')
@@ -27,46 +26,42 @@ module.exports = {
   },
   module: {
     rules: [
-      // .ts, .tsx
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      // css
-      {
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              modules: {
-                localIdentName: '[local]__[hash:base64:5]',
-              },
-            },
-          },
-          {
-            loader: 'postcss-loader',
-          },
-        ],
-      },
-      // less
-      {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: 'style-loader', // 从 JS 中创建样式节点
-          },
-          {
-            loader: 'css-loader', // 转化 CSS 为 CommonJS
-          },
-          {
-            loader: 'less-loader', // 编译 Less 为 CSS
-          },
-        ],
-      },
-      // static assets
+      // {
+      //   test: /\.css$/i,
+      //   use: [
+      //     'style-loader',
+      //     {
+      //       loader: 'css-loader',
+      //       options: {
+      //         modules: {
+      //           localIdentName: '[local]__[hash:base64:5]',
+      //         },
+      //       },
+      //     },
+      //     {
+      //       loader: 'postcss-loader',
+      //     },
+      //   ],
+      // },
+      // {
+      //   test: /\.less$/i,
+      //   use: [
+      //     {
+      //       loader: 'style-loader', // 从 JS 中创建样式节点
+      //     },
+      //     {
+      //       loader: 'css-loader', // 转化 CSS 为 CommonJS
+      //     },
+      //     {
+      //       loader: 'less-loader', // 编译 Less 为 CSS
+      //     },
+      //   ],
+      // },
       { test: /\.html$/, use: 'html-loader' },
       {
         test: /\.(a?png|svg)$/,
@@ -119,9 +114,7 @@ module.exports = {
         },
       ],
     }),
-    new WebpackBar({
-      color: '#fa8c16',
-    }),
+    new WebpackBar(),
     new ForkTsCheckerWebpackPlugin({
       typescript: {
         configFile: root('tsconfig.json'),

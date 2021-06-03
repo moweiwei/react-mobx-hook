@@ -16,8 +16,6 @@ module.exports = {
   },
   plugins: ['react-hooks'],
   rules: {
-    // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
-    // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-empty-interface': 'off',
@@ -72,17 +70,6 @@ module.exports = {
     'react/jsx-wrap-multilines': 0,
     'react/prop-types': 0,
     'react/jsx-one-expression-per-line': 0,
-    // 'import/extensions': [
-    //   'error',
-    //   'ignorePackages',
-    //   {
-    //     ts: 'never',
-    //     tsx: 'never',
-    //     json: 'never',
-    //     js: 'never',
-    //     jsx: 'never',
-    //   },
-    // ],
     'jsx-a11y/no-noninteractive-element-interactions': 0,
     'jsx-a11y/click-events-have-key-events': 0,
     'jsx-a11y/no-static-element-interactions': 0,
@@ -95,8 +82,6 @@ module.exports = {
     'prettier/prettier': 'off',
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': ['error'],
-    // 'no-shadow': 'off',
-    // '@typescript-eslint/no-shadow': ['error', { ignoreTypeValueShadow: true }],
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': ['error'],
     'react-hooks/rules-of-hooks': 'error', // 检查 Hook 的规则

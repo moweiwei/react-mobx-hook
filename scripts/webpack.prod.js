@@ -1,16 +1,16 @@
 const { resolve } = require('path')
 const { merge } = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
-const common = require('./webpack.common.js')
+const baseConfig = require('./webpack.base.js')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 
 const root = (path) => resolve(__dirname, `../${path}`)
 
-module.exports = merge(common, {
-  devtool: 'source-map',
+module.exports = merge(baseConfig, {
   mode: 'production',
+  devtool: 'source-map',
   output: {
     filename: '[name].[chunkhash].js',
     path: root('dist/'),
@@ -21,6 +21,9 @@ module.exports = merge(common, {
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
+  // module: {
+  //   rules: []
+  // },
   plugins: [
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin({
