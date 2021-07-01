@@ -1,5 +1,5 @@
 // import { lazy } from 'react'
-import Todo from 'pages/TodoList/App.tsx'
+import Todo from 'pages/TodoList/App'
 
 // const Todo = lazy(
 //   () => import(/* webpackChunkName: "todo" */ 'pages/TodoList/App.tsx'),

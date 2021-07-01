@@ -1,39 +1,15 @@
-/** Global definitions for developement **/
-
-// for style loader
-declare module '*.css' {
-  const styles: any
-  export = styles
-}
-
-declare module '*.svg' {
-  const path: string
-  export default path
-}
-
-declare module '*.bmp' {
-  const path: string
-  export default path
-}
-
-declare module '*.gif' {
-  const path: string
-  export default path
-}
-
-declare module '*.jpg' {
-  const path: string
-  export default path
-}
-
-declare module '*.jpeg' {
-  const path: string
-  export default path
-}
-
-declare module '*.png' {
-  const path: string
-  export default path
-}
+declare module '*.css'
+declare module '*.less'
+declare module '*.scss'
+declare module '*.sass'
+declare module '*.svg'
+declare module '*.png'
+declare module '*.jpg'
+declare module '*.jpeg'
+declare module '*.gif'
+declare module '*.bmp'
+declare module '*.tiff'
+declare module 'omit.js'
+declare module 'mockjs'
 
 declare let module: any

@@ -2,27 +2,30 @@
   "compilerOptions": {
     // 基本配置
     "sourceMap": true,
-    "target": "es5",
+    "target": "esnext",
     "jsx": "react",
     "allowJs": true,
     "module": "esnext",
     "declaration": false,
     "noImplicitAny": false,
-    "noImplicitReturns": false,
-    "noUnusedLocals": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
     "removeComments": true,
     "strictNullChecks": false,
-    "lib": ["es6", "es7", "dom"],
+    "lib": ["esnext", "dom"],
+    "suppressImplicitAnyIndexErrors": true,
+    // "strict": true,
 
     // 模块解析选项
+    "outDir": "/",
     "moduleResolution": "node",
     "resolveJsonModule": true, // 支持导入 json 模块
     "esModuleInterop": true,
     "baseUrl": "src",
     "paths": {
-      "pages/*": ["./pages/*"]
+      "@/*": ["./src/*"],
+      "pages": ["./src/pages"]
     },
-    "outDir": "/",
 
     // 实验性选项
     "experimentalDecorators": true, // 启用实验性的ES装饰器
@@ -33,5 +36,13 @@
     "skipLibCheck": true, // 忽略所有的声明文件（ *.d.ts）的类型检查
     "allowSyntheticDefaultImports": true // 允许从没有设置默认导出的模块中默认导入
   },
+  "include": [
+    "src/**/*",
+    ".eslintrc.js",
+    ".stylelintrc.js",
+    ".prettierrc.js",
+    "mock/*",
+    "types/global.d.ts"
+  ],
   "exclude": ["dist", "node_modules", "scripts"]
 }

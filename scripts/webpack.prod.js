@@ -1,5 +1,4 @@
 const { resolve } = require('path')
-const { merge } = require('webpack-merge')
 const TerserPlugin = require('terser-webpack-plugin')
 const baseConfig = require('./webpack.base.js')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
@@ -8,7 +7,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 
 const root = (path) => resolve(__dirname, `../${path}`)
 
-module.exports = merge(baseConfig, {
+module.exports = {
   mode: 'production',
   devtool: 'source-map',
   output: {
@@ -21,9 +20,9 @@ module.exports = merge(baseConfig, {
     minimize: true,
     minimizer: [new TerserPlugin()],
   },
-  // module: {
-  //   rules: []
-  // },
+  module: {
+    rules: [...baseConfig.module.rules],
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin({
@@ -32,4 +31,4 @@ module.exports = merge(baseConfig, {
       analyzerPort: 8888, // 端口号设置
     }),
   ],
-})
+}

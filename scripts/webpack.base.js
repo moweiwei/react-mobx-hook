@@ -10,7 +10,7 @@ const isDev = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   entry: {
-    app: './src/index.tsx',
+    main: ['@babel/polyfill', root('src/index.tsx')],
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -31,38 +31,6 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-      // {
-      //   test: /\.css$/i,
-      //   use: [
-      //     'style-loader',
-      //     {
-      //       loader: 'css-loader',
-      //       options: {
-      //         modules: {
-      //           localIdentName: '[local]__[hash:base64:5]',
-      //         },
-      //       },
-      //     },
-      //     {
-      //       loader: 'postcss-loader',
-      //     },
-      //   ],
-      // },
-      // {
-      //   test: /\.less$/i,
-      //   use: [
-      //     {
-      //       loader: 'style-loader', // 从 JS 中创建样式节点
-      //     },
-      //     {
-      //       loader: 'css-loader', // 转化 CSS 为 CommonJS
-      //     },
-      //     {
-      //       loader: 'less-loader', // 编译 Less 为 CSS
-      //     },
-      //   ],
-      // },
-      { test: /\.html$/, use: 'html-loader' },
       {
         test: /\.(a?png|svg)$/,
         use: [
@@ -76,10 +44,10 @@ module.exports = {
           },
         ],
       },
-      {
-        test: /\.(jpe?g|gif|bmp|mp3|mp4|ogg|wav|eot|ttf|woff|woff2)$/,
-        use: 'file-loader',
-      },
+      // {
+      //   test: /\.(png|jpe?g|gif|svg|eot|ttf|woff|woff2)$/i,
+      //   type: 'asset',
+      // },
     ],
   },
   plugins: [
